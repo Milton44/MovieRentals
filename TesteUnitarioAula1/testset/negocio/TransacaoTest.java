@@ -2,10 +2,6 @@ package negocio;
 
 import static org.junit.Assert.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,28 +26,20 @@ public class TransacaoTest {
 	}
 
 	@Test
-	public void valorLocacaoTotalTest() throws ParseException {
-		Locacao locacao1 = new Locacao();
-		Locacao locacao2 = new Locacao();
-		
+	public void valorLocacaoTotalTest() {
+		Locacao locacao = new Locacao();
 		Filme f = new Filme("Java", Genero.ROMANCE);
 		f.valor = 100;
 
 		Filme f2 = new Filme("JavaScript", Genero.ROMANCE);
 		f2.valor = 50;
 
-		Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse("05/09/2022");
-		locacao1.alugar(new Cliente("Izaias", 2), f, date1);
 		
-		Date date2 = new SimpleDateFormat("dd/MM/yyyy").parse("02/09/2022");
-		locacao2.alugar(new Cliente("Izaias", 2), f2, date2);
+		locacao.alugar(new Cliente("Izaias", 2), f);
+		locacao.alugar(new Cliente("Izaias", 2), f2);
 
-		transacao.alugueis.add(locacao1);
-		transacao.alugueis.add(locacao2);
-		
+		transacao.alugueis.add(locacao);
 		assertTrue(150 == transacao.valorLocacaoTotal());
-		assertTrue(locacao1.date == date1);
-		assertTrue(locacao2.date == date2);
 	}
 
 }
