@@ -44,7 +44,7 @@ public class TransacaoTest {
 		locacao1.alugar(new Cliente("Izaias", 2), f, date1);
 		
 		Date date2 = new SimpleDateFormat("dd/MM/yyyy").parse("02/09/2022");
-		locacao2.alugar(new Cliente("Izaias", 2), f2, date2);
+		locacao2.alugar(new Cliente("Izaias", 2, false), f2, date2);
 
 		transacao.alugueis.add(locacao1);
 		transacao.alugueis.add(locacao2);
@@ -52,6 +52,8 @@ public class TransacaoTest {
 		assertTrue(150 == transacao.valorLocacaoTotal());
 		assertTrue(locacao1.date == date1);
 		assertTrue(locacao2.date == date2);
+		assertTrue(!locacao2.cliente.ativo);
+		assertTrue(locacao1.cliente.ativo);
 	}
 
 }
