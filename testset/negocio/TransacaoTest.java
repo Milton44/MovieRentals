@@ -54,6 +54,20 @@ public class TransacaoTest {
 		assertTrue(locacao2.date == date2);
 		assertTrue(!locacao2.cliente.ativo);
 		assertTrue(locacao1.cliente.ativo);
+		
+		Locacao locacao3 = new Locacao();
+		
+		Filme f3 = new Filme("JavaScript", Genero.COMEDIA);
+		f3.valor = 50;
+		
+		Date date3 = new SimpleDateFormat("dd/MM/yyyy").parse("07/09/2022");
+		locacao3.alugar(new Cliente("Izaias", 2), f3, date3);
+		
+		transacao.alugueis.add(locacao3);
+		
+		System.out.print(transacao.generosMaisAlugados());
+		
+		assertTrue(transacao.generosMaisAlugados() == Genero.ROMANCE);
 	}
 
 }
